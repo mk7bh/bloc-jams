@@ -94,7 +94,7 @@ body.landing {
 }
 
 .column.full { width: 100%; }
-.column.two-thrirds { width: 66.6%; }
+.column.two-thrirds { width: 66.7%; }
 .column.half { width: 50%; }
 .column.thrid { width: 33.3%; }
 .column.fourth { width: 25%; }
@@ -104,3 +104,13 @@ body.landing {
     html {font-size: 120%;}
 }
 
+.clearfix::before,
+
+.clearfix::after {
+    content: " ";
+    display: table;
+}
+
+.clearfix::after {
+    clear: both;
+}
