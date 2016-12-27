@@ -30,6 +30,22 @@ var albumMarconi = {
     ]
 };
 
+// My Example Album
+var albumHillsong = {
+    title: 'Of Dirt and Grace',
+    artist: 'Hillsong UNITED',
+    label: 'Hillsong Church',
+    year: '2016',
+    albumArtUrl: 'assets/images/album_covers',
+    songs: [
+        {title: 'Here Now "(Madness)"', duration: '7:34' },
+        {title: 'Say the Word', duration: '3:43' },
+        {title: 'Heart Like Heaven', duration: '8:14' },
+        {title: 'Touch the Sky', duration: '4:05' },
+        {title: 'Street Called Mercy', duration: '3:57' }
+    ]
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
     var template =
        '<tr class="album-view-song-item">'
@@ -42,12 +58,13 @@ var createSongRow = function(songNumber, songName, songLength) {
     return template;
 };
 
-var setCurrentAlbum = function(album) {
-    var albumTitle = document.getElementsByClassName('album-view-title')[0];
-    var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-    var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-    var albumImage = document.getElementsByClassName('album-view-Image')[0];
-    var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-view-Image')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
+var setCurrentAlbum = function(album) { 
     albumTitle.firstChild.nodeValue = album.title;
     albumArtist.firstChild.nodeValue = album.artist;
     albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
@@ -60,4 +77,14 @@ var setCurrentAlbum = function(album) {
 
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
+
+    var albums = [albumPicasso, albumMarconi, albumHillsong]
+    var index = 1;
+    albumImage.addEventListener("click", function(event) {
+        setCurrentAlbum(albums[index]);
+        index++;
+        if (index == albums.length) {
+            index = 0;
+        }
+    });
 };
